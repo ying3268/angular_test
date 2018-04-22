@@ -30,7 +30,7 @@
     "label-position": true,
     "max-line-length": [
       true,
-      140
+      10000
     ],
     "member-access": false,
     "member-ordering": [
@@ -84,10 +84,10 @@
       "check-whitespace"
     ],
     "prefer-const": true,
-    "quotemark": [
-      true,
-      "single"
-    ],
+    // "quotemark": [
+    //   true,
+    //   "single",
+    // ],
     "radix": true,
     "semicolon": [
       true,
