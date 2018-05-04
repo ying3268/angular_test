@@ -20,22 +20,29 @@ contactType = ContactType;
   ngOnInit() {
   }
 
-createForm() {
-this.feedbackForm = this.fb.group({
-  firstname: '',
-  lastname: '',
-  telnum: 0,
-  email: '',
-  agree: false,
-  contacttype: 'None',
-  message: ''
+  createForm() {
+    this.feedbackForm = this.fb.group({
+      firstname: ['', Validators.required ],
+      lastname: ['', Validators.required ],
+      telnum: ['', Validators.required ],
+      email: ['', Validators.required ],
+      agree: false,
+      contacttype: 'None',
+      message: ''
+    });
+  }
 
-});
-}
-onSubmit() {
-  this.feedback = this.feedbackForm.value;
-  console.log(this.feedback);
-  this.feedbackForm.reset();
-
-}
+  onSubmit() {
+    this.feedback = this.feedbackForm.value;
+    console.log(this.feedback);
+    this.feedbackForm.reset({
+      firstname: '',
+      lastname: '',
+      telnum: '',
+      email: '',
+      agree: false,
+      contacttype: 'None',
+      message: ''
+    });
+  }
 }
