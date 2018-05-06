@@ -22,7 +22,10 @@
       </mat-card-actions>
     </mat-card>
   </div>
-
+  <div [hidden]="dish">
+    <mat-progress-spinner></mat-progress-spinner>
+    <h4>Loading </h4>
+  </div>
   <div fxFlex="40" *ngIf="dish">
     <mat-list>
       <h3 mat-header>Comments</h3>
@@ -32,9 +35,51 @@
         <p mat-line> - {{comment.author}} {{comment.date| date}} </p>
       </mat-list-item>
     </mat-list>
-  </div>
-  <div [hidden]="dish">
-    <mat-progress-spinner></mat-progress-spinner>
-    <h4>Loading </h4>
-  </div>
+    <div [hidden]="dish">
+      <mat-progress-spinner></mat-progress-spinner>
+      <h4>Loading </h4>
+    </div>
+  <form novalidate [formGroup]="commentForm" (ngSubmit)="onSubmit()">
+    <p>
+      <mat-input-container class="half-width" dividerColor="{{(formErrors.name) ? 'warn' : 'primary'}}">
+        <input matInput formControlName="name" placeholder="Name" type="text" required>
+        <mat-hint>
+          <span [hidden]="!(formErrors.name)">
+            {{formErrors.name}} </span>
+        </mat-hint>
+      </mat-input-container>
+    </p>
+
+    <h3>Rating</h3>
+    <p>
+      <mat-slider
+      autoTicks = true
+      disabled = false
+      invert = false
+      max = 5
+      min = 0
+      showTicks = true
+      step = 1
+      thumbLabel = true
+      value = 5
+      vertical = false
+       required>
+    </mat-slider>
+    </p>
+
+    <p>
+      <mat-input-container class="full-width" dividerColor="{{(formErrors.comment) ? 'warn' : 'primary'}}">
+        <textarea matInput formControlName="comment" placeholder="Your Comment" rows=12 required></textarea>
+      </mat-input-container>
+      <mat-hint>
+        <span [hidden]="!(formErrors.comment)">
+          {{formErrors.comment}} </span>
+      </mat-hint>
+    </p>
+    <button type="submit" mat-raised-button class="background-primary text-floral-white" [disabled]="commentForm.invalid">Submit</button>
+  </form>
+</div>
+
+
+
 </div>
