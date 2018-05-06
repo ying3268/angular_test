@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Params, ActivatedRoute } from "@angular/router";
 import { Location } from "@angular/common";
 
-import { Comments } from "../shared/comments";
+import { Comment } from "../shared/comment";
 import { Dish } from "../shared/dish";
 import { DishService } from "../services/dish.service";
 
@@ -27,15 +27,14 @@ export class DishdetailComponent implements OnInit {
 
   commentForm: FormGroup;
   comment: Comment;
-Comments: Comments[];
 
   formErrors = {
-    name: "",
+    author: "",
     comment: ""
   };
 
   validationMessages = {
-    name: {
+    author: {
       required: "Name is required.",
       minlength: "Name must be at least 2 characters long.",
       maxlength: "Name cannot be more than 25 characters long."
@@ -80,9 +79,9 @@ Comments: Comments[];
 
   createForm() {
     this.commentForm = this.fb.group({
-      name: ["", [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
-      comment: ["", [Validators.required]],
-      rating: 5
+      author: ["", [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
+      comment: ["", Validators.required],
+      rating: [5, Validators.required ],
     });
 
     this.commentForm.valueChanges.subscribe(data => this.onValueChanged(data));
@@ -111,13 +110,16 @@ Comments: Comments[];
 onSubmit() {
   this.comment = this.commentForm.value;
   console.log(this.comment);
+  this.comment.date = new Date().toISOString();
+  this.dish.comments.push(this.comment);
+
   this.commentForm.reset({
-    name: "",
+    author: "",
     comment: "",
     rating: 5,
   });
-  const d = new Date();
-    const date = d.toISOString();
+
+
 
 }
 }

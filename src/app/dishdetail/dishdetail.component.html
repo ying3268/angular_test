@@ -16,7 +16,7 @@
           <button mat-button [routerLink]="['/dishdetail', prev]"><span class="fa fa-chevron-left fa-lg"></span></button>
         <button mat-raised-button color="primary">SHARE</button>
         <button mat-raised-button color="warn">LIKE</button>
-        <button mat-raised-button color="accent" onclick="goBack()">BACK</button>
+        <button mat-raised-button color="accent" (click)="goBack()">BACK</button>
         <span class="flex-spacer"></span>
         <button mat-button [routerLink]="['/dishdetail', next]"><span class="fa fa-chevron-right fa-lg"></span></button>
       </mat-card-actions>
@@ -32,7 +32,7 @@
       <mat-list-item *ngFor="let comment of dish.comments">
         <h4 mat-line>{{comment.comment}}</h4>
         <p mat-line> {{comment.rating}} stars </p>
-        <p mat-line> - {{comment.author}} {{comment.date| date}} </p>
+        <p mat-line> -- {{comment.author}} {{comment.date| date}} </p>
       </mat-list-item>
     </mat-list>
     <div [hidden]="dish">
@@ -41,11 +41,11 @@
     </div>
   <form novalidate [formGroup]="commentForm" (ngSubmit)="onSubmit()">
     <p>
-      <mat-input-container class="half-width" dividerColor="{{(formErrors.name) ? 'warn' : 'primary'}}">
-        <input matInput formControlName="name" placeholder="Name" type="text" required>
+      <mat-input-container class="half-width" dividerColor="{{(formErrors.author) ? 'warn' : 'primary'}}">
+        <input matInput formControlName="author" placeholder="Name" type="text" required>
         <mat-hint>
-          <span [hidden]="!(formErrors.name)">
-            {{formErrors.name}} </span>
+          <span [hidden]="!(formErrors.author)">
+            {{formErrors.author}} </span>
         </mat-hint>
       </mat-input-container>
     </p>
@@ -61,8 +61,8 @@
       showTicks = true
       step = 1
       thumbLabel = true
+      tickInterval= 1
       value = 5
-      vertical = false
        required>
     </mat-slider>
     </p>
