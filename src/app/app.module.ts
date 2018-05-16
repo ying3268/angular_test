@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpModule } from '@angular/http';
 
 // tslint:disable-next-line:import-spacing
 import{ BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -24,11 +25,12 @@ import { ContactComponent } from './contact/contact.component';
 import { DishService } from './services/dish.service';
 import { PromotionService } from './services/promotion.service';
 import { LeaderService } from './services/leader.service';
+import { ProcessHttpmsgService } from './services/process-httpmsg.service';
 
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { LoginComponent } from './login/login.component';
 
-
+import { baseURL } from './shared/baseurl';
 
 
 @NgModule({
@@ -51,9 +53,10 @@ import { LoginComponent } from './login/login.component';
     MatSlideToggleModule, MatToolbarModule, MatListModule, MatGridListModule,
     MatCardModule, MatIconModule, MatProgressSpinnerModule, MatDialogModule,    FlexLayoutModule,
     FlexLayoutModule,
-    AppRoutingModule, FormsModule, ReactiveFormsModule
+    AppRoutingModule, FormsModule, ReactiveFormsModule, HttpModule
   ],
-  providers: [DishService, PromotionService, LeaderService],
+  providers: [DishService, PromotionService, LeaderService,
+    {provide: 'BaseURL', useValue: baseURL}, ProcessHttpmsgService],
   entryComponents: [LoginComponent],
   bootstrap: [AppComponent]
 })
