@@ -18,9 +18,14 @@
     </p>
   </mat-card-content>
 </mat-card>
-<div [hidden]="dish">
-    <mat-progress-spinner></mat-progress-spinner><h4>Loading </h4>
-    </div>
+<div [hidden]="dish|| dishErrMess">
+  <mat-progress-spinner></mat-progress-spinner><h4>Loading </h4>
+  </div>
+<div *ngIf="dishErrMess">
+<h2>Error</h2>
+<h4>{{dishErrMess}}</h4>
+</div>
+
 
 <mat-card *ngIf="promotion" fxFlex >
   <mat-card-header>
@@ -35,9 +40,14 @@
     </p>
   </mat-card-content>
 </mat-card>
-<div [hidden]="promotion">
-    <mat-progress-spinner></mat-progress-spinner><h4>Loading </h4>
-    </div>
+<div [hidden]="promotion || promotionErrMess">
+  <mat-progress-spinner></mat-progress-spinner><h4>Loading </h4>
+  </div>
+<div *ngIf="promotionErrMess">
+<h2>Error</h2>
+<h4>{{promotionErrMess}}</h4>
+</div>
+
 
 <mat-card *ngIf="leader" fxFlex >
   <mat-card-header>
@@ -52,7 +62,10 @@
     </p>
   </mat-card-content>
 </mat-card>
-<div [hidden]="leader">
-    <mat-progress-spinner></mat-progress-spinner><h4>Loading </h4>
-    </div>
+<div [hidden]="leader || leaderErrMess">
+  <mat-progress-spinner></mat-progress-spinner><h4>Loading </h4>
+  </div>
+<div *ngIf="leaderErrMess">
+<h2>Error</h2>
+<h4>{{leaderErrMess}}</h4>
 </div>
