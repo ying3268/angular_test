@@ -9,5 +9,10 @@
   "exclude": [
     "test.ts",
     "**/*.spec.ts"
-  ]
+  ],
+  "include": [
+"**/*.spec.ts",
+"**/*.d.ts",
+"../node_modules/ng-mdb-pro/**/*.ts"
+]
 }
